@@ -2,8 +2,10 @@ import { Elysia } from "elysia";
 
 const app = new Elysia();
 
-app.get("/", () => "Hello Elysia").listen(3000);
+app.get("/", () => "Hello Elysia");
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+app.get("/hello/:name", ({ params }) => {
+  return { message: `Hello, ${params.name}!` };
+});
+
+app.listen(3000);
